@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "server": "nodemon src/index.js"
+    "server": "nodemon src/index.js",
+    "reinstalar": "yarn install --force"
   },
   "dependencies": {
     "cors": "^2.8.5",
