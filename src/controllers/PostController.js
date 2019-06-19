@@ -12,19 +12,25 @@ module.exports = {
         const {autor, lugar, descricao, hashtag} = req.body;
         const {filename: imagem} = req.file;
 
+        const [name] = imagem.split('.');
+
+        const fileName = `${name}.jpg`
+
         await sharp(req.file.path)
         .resize(500)
         .jpeg({ quality: 70})
         .toFile(
-            path.resolve(req.file.destination, 'redimensionado', image)
+            path.resolve(req.file.destination, 'redimensionado', fileName)
         )
+
+        fs.unlinkSync(req.file.path);
 
         const post = await Post.create({
             autor,
             lugar,
             descricao,
             hashtag,
-            imagem
+            fileName
         });
 
         return res.json(post);
