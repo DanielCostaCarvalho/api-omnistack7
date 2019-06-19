@@ -8,6 +8,8 @@ mongoose.connect('mongodb+srv://rocketTeste:FCStzaX1YmT7SjxV@cluster0-dbich.mong
 {useNewUrlParser: true}
 );
 
+app.use(cors());
+
 app.use('/files', express.static(path.resolve(_dirname, '..', 'uploads', 'redimensionado')));
 
 app.use(require('./routes'));
